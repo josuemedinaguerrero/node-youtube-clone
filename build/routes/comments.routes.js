@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const comment_1 = require("../controllers/comment");
+const verifyToken_1 = require("../helpers/verifyToken");
+const router = (0, express_1.Router)();
+router.post("/", verifyToken_1.verifyToken, comment_1.addComment);
+router.delete("/:id", verifyToken_1.verifyToken, comment_1.deleteComment);
+router.get("/:videoId", comment_1.getComments);
+exports.default = router;
