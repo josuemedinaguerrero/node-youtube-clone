@@ -25,7 +25,7 @@ app.get("/", (_req: Request, res: Response) => {
    res.send([]);
 });
 
-app.use(cors({ credentials: true }));
+app.use(cors({ origin: "*", credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 
