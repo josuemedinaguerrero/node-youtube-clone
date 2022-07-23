@@ -25,7 +25,7 @@ app.get("/", (_req: Request, res: Response) => {
    res.send([]);
 });
 
-app.use(cors({ origin: "https://jmg-youtube-clone.herokuapp.com", credentials: true }));
+app.use(cors({ credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 
