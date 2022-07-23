@@ -33,7 +33,7 @@ export const signin = async (req: Request, res: Response, next: NextFunction) =>
 
       const { password, ...otherDetails } = user._doc;
 
-      res.cookie("access_token", token, { httpOnly: true, maxAge: 60 * 60 * 24 * 2 * 1000 }).json(
+      res.cookie("access_token", token, { httpOnly: false, maxAge: 60 * 60 * 24 * 2 * 1000 }).json(
          otherDetails
       );
    } catch (error) {
@@ -47,7 +47,7 @@ export const googleAuth = async (req: Request, res: Response, next: NextFunction
       if (user) {
          const token = jwt.sign({ id: user._id }, process.env.JWT as string);
          res.cookie("access_token", token, {
-            httpOnly: true,
+            httpOnly: false,
             maxAge: 60 * 60 * 24 * 2 * 1000,
          }).json(user);
       } else {
@@ -61,7 +61,7 @@ export const googleAuth = async (req: Request, res: Response, next: NextFunction
          const { password, ...otherDetails } = usedUserDoc._doc;
 
          res.cookie("access_token", token, {
-            httpOnly: true,
+            httpOnly: false,
             maxAge: 60 * 60 * 24 * 2 * 1000,
          }).json(otherDetails);
       }
