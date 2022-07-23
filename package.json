@@ -5,7 +5,6 @@
    "main": "index.js",
    "scripts": {
       "start": "node build/index.js",
-      "postinstall": "tsc",
       "dev": "ts-node-dev index.ts",
       "tsc": "tsc",
       "test": "echo \"Error: no test specified\" && exit 1"
