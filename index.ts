@@ -27,9 +27,12 @@ app.get("/", (_req: Request, res: Response) => {
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(
-   cors({ credentials: true, origin: ["https://jos-tube28.netlify.app, http://localhost:3000/"] })
-);
+// app.use(function (_req, res, next) {
+//    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+//    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//    next();
+// });
+app.use(cors({ origin: "https://jos-tube28.netlify.app", credentials: true }));
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/videos", videoRoutes);
