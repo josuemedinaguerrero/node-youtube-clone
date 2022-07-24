@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import express, { NextFunction, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes";
 import userRoutes from "./routes/users.routes";
@@ -25,16 +25,11 @@ app.get("/", (_req: Request, res: Response) => {
    res.send([]);
 });
 
-app.use(function (_req: Request, res: Response, next: NextFunction) {
-   res.header("Access-Control-Allow-Origin", "https://jos-tube28.netlify.app");
-   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-   next();
-});
-
-app.use(cors({ origin: "https://jos-tube28.netlify.app", credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
-
+app.use(
+   cors({ credentials: true, origin: ["https://jos-tube28.netlify.app, http://localhost:3000/"] })
+);
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/videos", videoRoutes);
